@@ -36,6 +36,6 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<h1>404</h1>")
+	w.WriteHeader(http.StatusNotFound)
+	fmt.Fprint(w, "<h1>404 page not found</h1>")
 }
