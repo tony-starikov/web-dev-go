@@ -6,15 +6,17 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", pathHandler)
+	var router Router
 	fmt.Println("Starting the server on port 3000...")
-	err := http.ListenAndServe(":3000", nil)
+	err := http.ListenAndServe(":3000", router)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func pathHandler(w http.ResponseWriter, r *http.Request) {
+type Router struct {}
+
+func (router Router) ServeHTTP(w http.ResponseWriter, r *http.Request)  {
 	switch r.URL.Path {
 	case "/":
 		homeHandler(w, r)
